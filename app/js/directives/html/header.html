@@ -1,0 +1,46 @@
+<div class="header">
+  <div class="row header-one">
+    <div class="col-2 img-header">
+      <img ng-src="res/logo.png" alt="logo">
+    </div>
+    <div class="col-3">
+      <div class="row">
+        <h4>LMJ</h4>
+      </div>
+      <div class="row">
+        <h5>Let's Master Java Together!</h5>
+      </div>
+    </div>
+    <div class="col-5 text-center">
+      <input type="search" class="form-control ds-input" id="search-input"
+      placeholder="Поиск..." aria-label="Поиск для..." autocomplete="off"
+      spellcheck="false" role="combobox" aria-autocomplete="list"
+      aria-expanded="false" aria-owns="algolia-autocomplete-listbox-2" dir="auto" style="position: relative; vertical-align: top;">
+    </div>
+    <div class="col-1 img-header">
+      <img ng-src="res/achieve.png" alt="achieve">
+    </div>
+    <div class="col-1 img-header">
+      <img ng-src="res/avatar.png" alt="avatar" data-toggle="tooltip" data-placement="bottom" title="Ваш профиль">
+    </div>
+  </div>
+  <div class="row" >
+    <nav class="one" ng-repeat="topic in topics">
+
+      <ul class="topmenu">
+        <li>
+          <a href="{{topic.link}}" class="btn btn-outline-light">
+            {{topic.name}}
+            <i class="fa fa-angle-down"></i>
+          </a>
+
+          <ul class="submenu">
+            <li ng-repeat="sub in topic.subtopics" class="text-center">
+              <a href="{{sub.link}}" class="btn btn-sm">{{sub.name}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

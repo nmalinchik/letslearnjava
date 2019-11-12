@@ -1,18 +1,10 @@
 app.controller('MainController', ['$scope', function($scope){
   $scope.topics = [
     {
-      name: 'Задания',
+      name: 'Экзамен Java 8',
       link: '#',
       subtopics: [{
-        name: 'Видео',
-        link: '#'
-      },
-      {
-        name: 'Аудио',
-        link: '#'
-      },
-      {
-        name: 'Уроки',
+        name: '---',
         link: '#'
       }
     ]
@@ -21,27 +13,75 @@ app.controller('MainController', ['$scope', function($scope){
       name: 'Курсы',
       link: '#',
       subtopics: [{
-        name: 'Java',
-        link: '#'
-      },
-      {
-        name: 'Spring',
+        name: '---',
         link: '#'
       }
     ]
   },
   {
-    name: 'Игры',
+    name: 'Готовимся к собеседованию',
     link: '#',
     subtopics: [{
-      name: 'Дуэль',
+      name: 'Общие вопросы',
       link: '#'
     },
     {
-      name: 'Best',
+      name: 'Тех вопросы',
+      link: '#'
+    },
+    {
+      name: 'Задачи',
+      link: '#'
+    },
+    {
+      name: 'Тестовые вопросы',
       link: '#'
     }
   ]
+  },
+  {
+    name: 'Перевод',
+    link: '#',
+    subtopics: [{
+      name: '---',
+      link: '#'
+    }
+  ]
+  },
+  {
+    name: 'Учебник java',
+    link: '#',
+    subtopics: [{
+      name: '---',
+      link: '#'
+    }
+  ]
+  },
+  {
+    name: 'Frameworks',
+    link: '#',
+    subtopics: [{
+      name: '---',
+      link: '#'
+    }
+  ]
+  },
+  {
+    name: 'NeoКоде',
+    link: '#',
+    subtopics: [{
+      name: '---',
+      link: '#'
+    }
+  ]
+  },
+  {
+    name: 'Games',
+    link: '#',
+    subtopics: [{
+      name: 'Можешь написать короче?',
+      link: '#'
+  }]
   },
   ];
 
