@@ -8,7 +8,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^15.0.0",
     "angular": "1.7.x",
-    "bootstrap": "3.3.x",
+    "bootstrap": "3.4.x",
     "ckeditor5-code-block": "^1.0.2",
     "popper.js": "^1.16.0"
   },
