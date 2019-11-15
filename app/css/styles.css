@@ -1,0 +1,8 @@
+
+@font-face {
+font-family: 'zhizn regular'; /* Имя шрифта */
+src: url(fonts/zhizn-regular.otf); /* Путь к файлу со шрифтом */
+font-weight: normal;
+font-style: normal;
+
+}

@@ -12,6 +12,7 @@
   max-width: 100%;
 }
 
+/* Меню */
 ul {
   list-style: none;
   margin: 0;
@@ -40,9 +41,6 @@ ul {
   padding-left: 10px;
 }
 
-/* .one ul {
-  background: #ECDAD6;
-} */
 .one ul a {
   color: #695753;
 }
@@ -53,4 +51,31 @@ ul {
 }
 .one ul li:hover .submenu {
   visibility: visible;
+}
+
+/* Статьи */
+
+.post-header {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.post h1{
+  color: #c9d0d4;
+  font-family: 'zhizn regular', sans-serif;
+  font-size: 46px;
+  font-weight: 100;
+  line-height: 50px;
+  letter-spacing: 1px;
+  padding: 0 0 40px;
+  border-bottom: double #555;
+}
+
+.post p {
+  color: #bbc3c8;
+  font-family: 'Verdana', sans-serif;
+  font-size: 16px;
+  line-height: 26px;
+  text-indent: 30px;
+  margin: 0;
 }
