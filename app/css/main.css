@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
+
 .header{
   background-color: #FFCAB0;
 
@@ -154,8 +156,16 @@ ul {
 
 h2 {
   padding: 15px;
+  color: #d04764; font-family: ‘Lobster’, cursive; font-size: 36px; font-weight: normal; line-height: 48px; margin: 0 0 18px; text-shadow: 1px 0 0 #fff;
 }
 
 h3 {
   padding: 10px;
+  color: #2CA4B0; font-family: ‘Oleo Script’, cursive; font-size: 24px; font-weight: normal; line-height: 32px; margin: 0 0 18px; text-shadow: 1px 0 0 #fff;
 }
+
+p, li { color: #333; font-family: ‘Original Surfer’, cursive; font-size: 16px; line-height: 28px;}
+
+a { color: #d04764; font-family: ‘Original Surfer’, cursive; }
+
+a:hover { text-decoration: underline }
