@@ -6,7 +6,6 @@
     <!-- CSS -->
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/styles.css" />
     <!-- Srcipts -->
     <script src="lib/angular/angular.js"></script>
     <script src="lib/bootstrap/js/bootstrap.js"></script>
@@ -20,10 +19,10 @@
       <div class="row">
       <div class="col-2">
         <ul class="list-group">
-          <li class="list-group-item list-group-item-action list-group-item-info">Intro</li>
-          <li class="list-group-item list-group-item-action list-group-item-info">1</li>
+          <li class="list-group-item list-group-item-action list-group-item-info" ng-click="selectLesson(0)">Intro</li>
+          <li class="list-group-item list-group-item-action list-group-item-info" ng-click="selectLesson(1)">1</li>
           <ul class="list-group">
-            <li class="list-group-item list-group-item-action list-group-item-info">1.1</li>
+            <li class="list-group-item list-group-item-action list-group-item-info" ng-click="selectLesson(2)">1.1</li>
             <li class="list-group-item list-group-item-action list-group-item-info">1.2</li>
             <li class="list-group-item list-group-item-action list-group-item-info">1.3</li>
             <li class="list-group-item list-group-item-action list-group-item-info">1.4</li>
@@ -31,8 +30,9 @@
         </ul>
       </div>
       <div class="col-8">
-      <intro></intro>
-
+      <div class="lesson">
+        <div ng-include="selectedLesson"></div>
+      </div>
       </div>
     </div>
 

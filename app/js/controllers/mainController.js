@@ -85,6 +85,16 @@ app.controller('MainController', ['$scope', function($scope){
   },
   ];
 
+  $scope.lessons = [
+    'js/directives/html/intro.html',
+    'js/directives/html/lesson1.html',
+    'js/directives/html/lesson1-1.html'
+  ];
+
+  $scope.selectedLesson = $scope.lessons[2];
+  $scope.selectLesson = function(number){
+    $scope.selectedLesson = $scope.lessons[number];
+  }
 
 
 }])

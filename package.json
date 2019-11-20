@@ -1,9 +1,8 @@
 {
-  "name": "angular-phonecat",
+  "name": "letslearnjava",
   "private": true,
   "version": "0.0.0",
-  "description": "A tutorial application for AngularJS",
-  "repository": "https://github.com/angular/angular-phonecat",
+  "repository": "https://github.com/nmalinchik/letslearnjava",
   "license": "MIT",
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^15.0.0",

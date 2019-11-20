@@ -79,3 +79,83 @@ ul {
   text-indent: 30px;
   margin: 0;
 }
+
+.lesson{
+  margin-top: 20px;
+}
+
+.logo-title{margin:50px}
+.logo-title h1{text-decoration:none;-webkit-transform:perspective(2.5em) rotateX(15deg) scaleY(0.8);-moz-transform:perspective(2.5em) rotateX(15deg) scaleY(0.8);-ms-transform:perspective(2.5em) rotateX(15deg) scaleY(0.8);-o-transform:perspective(2.5em) rotateX(15deg) scaleY(0.8);transform:perspective(2.5em) rotateX(15deg) scaleY(0.8);-webkit-transition:all .5s;-moz-transition:all .5s;transition:all .5s;display:inline-block;text-align:center;text-transform:uppercase;font-size:75px;font-weight:700;font-family:'Exo 2';line-height:.8;color:#fbd62a;text-shadow:0 -1px 15px rgba(0,0,0,0.9),0 1px 0 #7f6303,0 3px 0 #846703,0 5px 0 #896b03,0 7px 0 #8e6f03,0 9px 0 #937203,0 6px 50px rgba(252,223,92,0.8)}
+.logo-title h1:first-line{font-size:.8em}
+.logo-title h1:hover{-webkit-transform:perspective(8em) rotateX(11deg) scale(1.2);-moz-transform:perspective(8em) rotateX(11deg) scale(1.2);-ms-transform:perspective(8em) rotateX(11deg) scale(1.2);-o-transform:perspective(8em) rotateX(11deg) scale(1.2);transform:perspective(8em) rotateX(11deg) scale(1.2);text-shadow:0 -1px 15px black,0 1px 0 #7f6303,0 2px 0 #846703,0 0 0 #896b03,0 1px 0 #8e6f03,0 2px 0 #937203,0 2px 30px rgba(252,223,92,0.6)}
+
+.code-block{
+  font-family: monospace;
+  max-width: 1000px;
+  margin: 20px 0 20px 0;
+  padding: 10px 20px 1px 20px;
+  background-color: #DCDCDC;
+  line-height: 0.8;
+}
+
+.question img{
+  padding: 5px 0 5px 5px;
+}
+
+.question .card-title{
+    display: inline-block;
+    background: #0097a7;
+    color: #fff;
+    margin: -10px 0 10px 30%;
+    padding: .5rem 1rem .625rem 1rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    border-radius: 30px;
+}
+
+.variants {
+    padding:0;
+    list-style: none;
+}
+.variants li{
+    padding:6px;
+}
+.variants li:before {
+    padding-right:10px;
+    font-weight: bold;
+    color: #77AEDB;
+    content: "\2713";
+    transition-duration: 0.5s;
+}
+.variants li:hover:before {
+    color: #337AB7;
+    content: "\2714";
+}
+
+.variants li:hover {
+  padding-left: 15px;
+}
+
+.list{
+  padding: 0 0 15px 15px;
+}
+
+.list li{
+    padding:4px;
+}
+
+.list li:before {
+    padding-right:10px;
+    font-weight: bold;
+    color: black;
+    content: "\2615";
+    transition-duration: 0.5s;
+}
+
+h2 {
+  padding: 15px;
+}
+
+h3 {
+  padding: 10px;
+}
