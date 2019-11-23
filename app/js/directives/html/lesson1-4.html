@@ -1,0 +1,396 @@
+<h1>1.4 Модификаторы доступа</h1>
+
+<p>В этом уроке мы рассмотрим все типы модификаторов доступа: <em>public, protected, private, package-private</em>
+(<em>default </em> - модификатор по умолчанию. Это модификатор, который присваивается, когда явно не указан ни один из модификаторов выше.)</p>
+<p>Также мы рассмотрим, каким образом с помощью модификаторов доступа можно ограничивать доступность классов и их элементов в рамках одного или разных пакетов.</p>
+<hr />
+
+<h2>1.4.1 Модификаторы доступа</h2>
+
+<p>Начнем с небольшого примера:</p>
+
+<h5>(изменить классы на таблице)</h5>
+
+<div class="code-block">
+  <p>package building;</p>
+  <p>class Cat {}</p>
+  <p> </p>
+  <p>package library;</p>
+  <p>class Meat {}</p>
+</div>
+
+<p>В приведенном выше коде класс <em>Cat </em>не может получить доступ к классу <em>Meat</em>.</p>
+<p>Если классу <em>Meat </em>изменить модификатор доступа с <em>default </em>на <em>public </em>- проблема исчезает.</p>
+<p>Классы верхнего уровня могут иметь только 2 модификатора доступа: <em>public</em> и <em>default
+</em>(без указания модификатора). <s>Классы верхнего уровня</s> - это классы, которые не содержаться в теле другого класса.</p>
+<p>Те классы, которые находятся внутри другого класса,
+называются <s>вложенными</s> или <s>внутренними</s> классами (<em>nested </em>или <em>inner class</em>).
+По этим классам в экзамене вопросов нет, поэтому мы не будем заострять на них внимание.</p>
+
+<h4>Что контролируют модификаторы доступа?</h4>
+
+<p>Модификаторы доступа, как понятно из их названия, контролируют уровни доступа к классам,
+интерфейсам и их элементам из других классов и интерфейсов из одних и тех же либо разных пакетов.
+Используя модификаторы доступа вы можете управлять доступностью классов, интерфейсов и их элементов.</p>
+
+<h4>Модификаторы доступа применяются ко всем Java-элементам?</h4>
+
+<p>Модификаторы доступа применяются к классам, интерфейсам и их членам (переменным экземпляра класса, переменным класса и методам).
+К локальным переменным (которые находятся в теле методов) и параметрам методов модификаторы доступа <s>не применимы</s>.
+Попытка сделать это приведет к <s>ошибке на этапе компиляции</s>.</p>
+
+<h4>Сколько всего модификаторов доступа: три или четыре?</h4>
+
+<p>Данный вопрос иногда озадачивает программистов, т.к. модификатор по умолчанию не имеет специального оператора для его определения.
+Если класс, интерфейс, метод или переменная не имеет модификатора,
+значит они имеют модификатор доступа по умолчанию (еще его называют <em>package-private</em>).</p>
+<p>Таким образом мы получаем 4 уровня доступности:</p>
+<ul class="list">
+  <li><em>public</em> (самый доступный);</li>
+  <li><em>protected</em>;</li>
+  <li><em>default</em>;</li>
+  <li><em>private </em>(самый ограниченный).</li>
+</ul>
+<p>Для того, чтобы основательно разобраться со всеми модификаторами доступа мы будем использовать следующую схему:</p>
+
+<h5>!!!!!!!!!!!СХЕМА</h5>
+
+<p>Классы <em>LittleAnimal, Cat, Dog</em> принадлежат пакету <em>pets.
+Rabbit</em> и <em>Fish </em>находятся в пакете <em>wild</em>.
+Классы <em>Rabbit </em>и <em>Cat </em>(<s>находящиеся в разных пакетах</s>)
+являются подклассами (наследуются от него) класса <em>LittleAnimal</em>.
+Ниже мы будем задавать данным классам разные модификаторы доступа, чтобы посмотреть,
+как будет меняться доступность тех или иных элементов с одного или разных пакетов.</p>
+<p>При рассмотрении каждого отдельного модификатора, мы будем вносить изменения в схему выше,
+чтобы нагляднее понимать принцип действия того или иного модификатора.</p>
+<hr />
+
+<h2>1.4.2 Public</h2>
+
+<p>Является самым открытым модификатором доступа.
+Классы и интерфейсы, определенные с модификатором <em>public</em>,
+доступны из всех пакетов из несвязанных и производных классов.</p>
+<p>Чтобы наглядно рассмотреть, о чем идет речь, давайте добавим классу <em>LittleAnimal
+</em>уровень доступа <em>public </em>и добавим в него публичную переменную <em>voice </em>и метод <em>say()</em>:</p>
+
+<h5>!!!!!!!!!!!!!!!!СХЕМА</h5>
+
+<div class="code-block">
+<p>package pets;</p>
+<p>public class LittleAnimal{</p>
+<p style="margin-left: 40px;">public String voice;</p>
+<p style="margin-left: 40px;">public void say(){}</p>
+<p>}</p>
+</div>
+<p>Попробуем получить доступ к классу <em>LittleAnimal </em>и его элементам из класса <em>Fish</em>.
+Мы используем этот класс потому, что он находиться в другом пакете и не является производным от класса <em>LittleAnimal</em>.</p>
+<div class="code-block">
+<p>package wild;</p>
+<p>import pets.LittleAnimal;</p>
+<p>public class Fish {</p>
+<p style="margin-left: 40px;">Fish () {</p>
+<p style="margin-left: 80px;">LittleAnimal animal = new LittleAnimal();</p>
+<p style="margin-left: 80px;">String value = animal.voice;</p>
+<p style="margin-left: 80px;">animal.say();</p>
+<p style="margin-left: 40px;">}</p>
+<p>}</p>
+</div>
+<p>В примере выше мы не получим никаких ошибок - и сам класс <em>LittleAnimal</em> и его элементы доступны из класса <em>Fish</em>.
+При этом, если бы класс <em>Fish </em>являлся производным от класса <em>LittleAnimal </em>или находился с ним в одном пакете,
+ошибок бы также не было. Класс и его элементы будут также доступны и из остальных классов нашей схемы (<em>Cat, Dog, Rabbit</em>).</p>
+<p>Таким образом доступность публичных элементов можно представить так:</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<td scope="col"><p class="text-center align-middle"></p></td>
+<td scope="col"><p class="text-center align-middle">В одном пакете</p></td>
+<td scope="col"><p class="text-center align-middle">В разных</p></td>
+</tr>
+<tr>
+<td scope="row"><p class="text-center align-middle">Подклассы</p></td>
+<td><p class="text-center align-middle">+</p></td>
+<td><p class="text-center align-middle">+</p></td>
+</tr>
+<tr>
+<td scope="row"><p class="text-center align-middle">Несвязанные классы</p></td>
+<td><p class="text-center align-middle">+</p></td>
+<td><p class="text-center align-middle">+</p></td>
+</tr>
+</tbody>
+</table>
+<hr />
+
+<h2>1.4.3 Protected</h2>
+
+<p>Элементы класса, определенные с модификатором <em>protected </em>доступны:</p>
+<ul>
+<li>Для классов и интерфейсов, находящихся в одном пакете;</li>
+<li>Во всех производных классах, <s>даже из других пакетов</s>.</li>
+</ul>
+<p>Давайте изменим модификаторы для элементов в классе <em>LittleAnimal </em>с<em> public </em>на <em>protected</em>:</p>
+
+<h5>!!!!!!!!!!!!!!!СХЕМА</h5>
+
+<p>Мы получаем следующий код нашего класса:</p>
+<div class="code-block">
+<p>package pets;</p>
+<p>public class LittleAnimal{</p>
+<p style="margin-left: 40px;">protected String voice;</p>
+<p style="margin-left: 40px;">protected void say(){}</p>
+<p>}</p>
+</div>
+
+<h5>!!!!!!!!!!!!!СХЕМА</h5>
+
+<p>На схеме выше показана возможность взаимодействий с классом <em>LittleAnimal </em>и его составляющих из разных классов,
+находящихся как в одном с ним пакете, так и в другом.</p>
+
+<p>Класс <em>Fish </em>выдаст ошибку при попытке компиляции,
+когда попытается обратиться к методу или переменной из класса <em>LittleAnimal</em>.
+Код ошибки будет следующий:</p>
+<div class="console-block">
+<p>House.java:6: sat() has protected access in pets.LittleAnimal</p>
+<p>animal.say();</p>
+</div>
+<h5>добавить блок info</h5>
+
+<p>Мы получим данную ошибку потому, что java-код не компилируется из-за наличия синтаксических ошибок.
+В случае наличия ошибок, java-компилятор выводит в консоль номер строки и краткое описание ошибки в ней.</p>
+<p>Подклассы могут использовать <em>protected-</em>переменные и методы суперкласса,
+независимо от того, в котором пакете они находятся.
+Это видно на схеме в классе <em>Rabbit</em>, который без проблем может использовать и переменную,
+и метод суперкласса <em>LittleAnimal</em>.
+Но если мы попытаемся создать новый объект самого суперкласса, то в этом случае мы получим ошибку компиляции.
+Пример ниже выдаст ошибку <s>на строке №6</s>:</p>
+<div class="code-block">
+<p>package wild;</p>
+<p>import pets.LittleAnimal;</p>
+<p>class Rabbit extends LittleAnimal {</p>
+<p style="margin-left: 40px;">Rabbit() {</p>
+<p style="margin-left: 80px;">LittleAnimal animal = new LittleAnimal();</p>
+<p style="margin-left: 80px;">String v = animal.voice; <s>//ошибка компиляции</s></p>
+<p style="margin-left: 80px;">animal.say();</p>
+<p style="margin-left: 40px;">}</p>
+<p>}</p>
+</div>
+
+<table class="table table-bordered">
+<tbody>
+<tr>
+<td scope="col"><p class="text-center align-middle"></p></td>
+<td scope="col"><p class="text-center align-middle">В одном пакете</p></td>
+<td scope="col" colspan="2"><p class="text-center align-middle">В разных пакетах</p></td>
+</tr>
+<tr>
+<td scope="row" rowspan="2"><p class="text-center align-middle">Подклассы</p></td>
+<td rowspan="2"><p class="text-center align-middle">+</p></td>
+<td><p class="text-center align-middle">+</p></td>
+<td><p class="text-center align-middle">-</p></td>
+</tr>
+<tr>
+<td scope="row"><p class="text-center align-middle">С помощью наследования</p></td>
+<td><p class="text-center align-middle">При создании объекта суперкласса</p></td>
+</tr>
+<tr>
+<td scope="row"><p class="text-center align-middle">Несвязанные классы</p></td>
+<td><p class="text-center align-middle">+</p></td>
+<td colspan="2"><p class="text-center align-middle">-</p></td>
+</tr>
+</tbody>
+</table>
+<hr />
+
+<h2>1.4.4 Default</h2>
+
+<p>Члены класса, у которых явно не указан модификатор доступа получают модификатор доступа по умолчанию.
+Данные элементы доступны для использования только в классах и интерфейсах, которые <s>расположены в одном пакете.</s>
+Данный тип модификатора также называют <em>package-private</em>.</p>
+<p>Представьте свою квартиру/дом как один <em>package</em>, в котором находятся классы-комнаты.
+В классах-комнатах находятся переменные и методы - ваши вещи.
+Вы можете пользоваться отдельными вещами, и не обязательно в одной комнате,
+можете перенести их в другую комнату, но они все равно остаются в рамках одного пакета - вашего жилища,
+и никакой случайный прохожий с улицы не может зайти к вам в квартиру и использовать их просто так
+(они являются <s>приватными </s>в рамках одного пакета).</p>
+<p>Именно так и работают модификаторы доступа по умолчанию -
+классы из одного пакета могут без проблем вызывать друг друга, а из других не имеют к ним доступа.</p>
+<p>Для лучшего понимания модификатора по умолчанию, внесем изменения в нашу схему:</p>
+
+<h5>!!!!!!!!!!!!СХЕМА</h5>
+
+<p>Мы получим следующий код нашего класса:</p>
+<div class="code-block">
+<p>package pets;</p>
+<p>public class LittleAnimal{</p>
+<p style="margin-left: 40px;">String voice;</p>
+<p style="margin-left: 40px;">void say(){}</p>
+<p>}</p>
+</div>
+<p>Для наглядности изменим схему доступности переменных из класса <em>LittleAnimal </em>в других классах нашего проекта:</p>
+
+<h5>!!!!!!!!!!!!!!!!СХЕМА</h5>
+
+<p>Так как классы <em>Cat </em>и <em>Dog </em>находятся в одном пакете с классом <em>LittleAnimal </em>,
+они без проблем могут использовать переменные и методы из класса <em>LittleAnimal</em>.
+Классы, которые находятся в другом пакете этой возможности не имеют, поэтому,
+при попытке компиляции любого из классов в пакете <em>wild </em>мы получим следующие ошибки.</p>
+<p>Для класса <em>Rabbit</em>:</p>
+<div class="console-block">
+<p>Rabbit.java:3: say() is not public in pets.LittleAnimal; cannot be</p>
+<p>accessed from outside package</p>
+<p style="margin-left: 40px;">littleAnimal.say();</p>
+</div>
+<p>Для класса <em>Fish</em>:</p>
+<div class="console-block">
+<p>Fish.java:5: cannot find symbol</p>
+<p style="margin-left: 40px;">symbol : method say()</p>
+<p style="margin-left: 40px;">location: class wild.Fish</p>
+<p style="margin-left: 40px;">say();</p>
+</div>
+<hr />
+
+<h3>Классы с модификатором доступа по умолчанию</h3>
+<p>Для того, чтобы понять уровень доступа классов с модификатором доступа по умолчанию,
+представим следующую ситуацию: вы открываете шикарнейшее кафе <s>"Мясцо"</s> в городе <s>Дофигасекретовск</s>,
+где готовятся самые вкусные стейки в мире, и вы вводите супер-акцию - бесплатный стейк для каждого туриста,
+впервые посетившего ваш город. Вот только <s>Дофигасекретовск </s> - это сверхсекретный военный город,
+въехать и выехать из которого без пропуска невозможно и туристов тут не было уже лет 50 лет.
+Как думаете, оценят ли вашу акцию радостные туристы? Сомневаюсь, если они даже в город ваш не могут попасть).</p>
+<p>Так вот наш <s>Дофигасекретовск </s> - это пакет, а наше кафе <s>«Мясцо"</s> класс в нем.
+Наше замечательное кафе смогут посетить только жители нашего города (и повозмущаться по поводу дурацкой акции),
+но туристы-халявщики, увы, до него добраться не смогут.
+Именно так себя ведут классы с модификатором доступа по умолчанию.</p>
+<p>Давайте уберем модификатор доступа у класса <em>LittleAnimal</em>:</p>
+<div class="code-block">
+<p>package pets;</p>
+<p>class LittleAnimal {</p>
+<p style="margin-left: 40px;">//.. тело класса</p>
+<p>}</p>
+</div>
+<p>В классах <em>Cat </em>и <em>Dog</em> ничего не измениться -
+они по-прежнему смогут использовать все элементы класса <em>LittleAnimal</em>.
+А вот класс <em>Rabbit </em>из пакета <em>wild </em>при попытке импорта класса <em>LittleAnimal </em>
+упадет со следующей ошибкой компиляции:</p>
+<div class="console-block">
+<p>Rabbit.java:2: pets.LittleAnimal is not public in pets; cannot be accessed from</p>
+<p style="margin-left: 40px;">outside package</p>
+<p style="margin-left: 40px;">import pets.LittleAnimal;</p>
+</div>
+<p>Мы получаем следующую схему:</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<td scope="col"><p class="text-center align-middle"></p></td>
+<td scope="col"><p class="text-center align-middle">В одном пакете</p></td>
+<td scope="col"><p class="text-center align-middle">В разных</p></td>
+</tr>
+<tr>
+<td scope="row"><p class="text-center align-middle">Подклассы</p></td>
+<td><p class="text-center align-middle">+</p></td>
+<td><p class="text-center align-middle">-</p></td>
+</tr>
+<tr>
+<td scope="row"><p class="text-center align-middle">Несвязанные классы</p></td>
+<td><p class="text-center align-middle">+</p></td>
+<td><p class="text-center align-middle">-</p></td>
+</tr>
+</tbody>
+</table>
+<p>Различия между модификатором по умолчанию и модификатором <em>protected </em>иногда вызывают затруднения,
+поэтому запомните это простое правило:</p>
+<p>Воспринимайте модификатор <em>default </em>как <em>package-private </em>(доступен только в рамках одного пакета),
+а модификатор <em>protected </em>воспринимайте как <em>package-private </em>+ <s>наследники </s>(производные от класса-родителя).</p>
+<hr />
+
+<h2>1.4.5 Private</h2>
+
+<p><em>private </em>- самый закрытый модификатор доступа.
+Члены класса с приватным модификатором доступа доступны только в рамках этого класса.
+Не имеет значения в каком пакете будет подкласс - он все равно не сможет использовать приватные члены родительского класса.</p>
+<p>Давайте добавим метод <em>tryToUseIt() </em>в наш класс <em>LittleAnimal </em>с модификатором <em>private</em>:</p>
+
+<h5>!!!!!!!!!!!!!!!!СХЕМА</h5>
+
+<p>Мы получим следующий код:</p>
+<div class="code-block">
+<p>package pets;</p>
+<p>public class LittleAnimal{</p>
+<p style="margin-left: 40px;">String voice;</p>
+<p style="margin-left: 40px;">private void tryToUseIt(){}</p>
+<p>}</p>
+</div>
+<p>Метод <em>tryToUseIt()</em> не получиться вызвать не в одном из классов независимо от того,
+в одном ли они пакете с ним пакетом, наследуются от него или нет.
+При попытке вызвать данный метод в других классах мы получим ошибку компиляции.</p>
+<p>Таким образом мы получим следующую схему:</p>
+
+<table class="table table-bordered">
+<tbody>
+<tr>
+<td scope="col"><p class="text-center align-middle"></p></td>
+<td scope="col"><p class="text-center align-middle">В одном пакете</p></td>
+<td scope="col"><p class="text-center align-middle">В разных</p></td>
+</tr>
+<tr>
+<td scope="row"><p class="text-center align-middle">Подклассы</p></td>
+<td><p class="text-center align-middle">-</p></td>
+<td><p class="text-center align-middle">-</p></td>
+</tr>
+<tr>
+<td scope="row"><p class="text-center align-middle">Несвязанные классы</p></td>
+<td><p class="text-center align-middle">-</p></td>
+<td><p class="text-center align-middle">-</p></td>
+</tr>
+</tbody>
+</table>
+<p>По секрету скажем, что и приватные элементы можно вызвать - для этого используется рефлексия (Java reflection).
+Но в экзамен эта тема не входит, поэтому при ответе на вопросы пользуйтесь схемой выше.</p>
+<hr />
+
+<p>1.4.6 Область применения модификаторов доступа</p>
+
+<p>Модификаторы доступа могут быть применены не ко всем элементам в коде. Области применения того или иного модификатора доступа представлена в таблице ниже:</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<td scope="col"><p class="text-center align-middle">Entity name</p></td>
+<td scope="col"><p class="text-center align-middle">public</p></td>
+<td scope="col"><p class="text-center align-middle">protected</p></td>
+<td scope="col"><p class="text-center align-middle">private</p></td>
+</tr>
+<tr>
+<td scope="row"><p class="text-center align-middle">Классы, интерфейсы, enum верхних уровней</p></td>
+<td><p class="text-center align-middle">+</p></td>
+<td><p class="text-center align-middle">-</p></td>
+<td><p class="text-center align-middle">-</p></td>
+</tr>
+<tr>
+<td scope="row"><p class="text-center align-middle">Переменные и методы класса</p></td>
+<td><p class="text-center align-middle">+</p></td>
+<td><p class="text-center align-middle">+</p></td>
+<td><p class="text-center align-middle">+</p></td>
+</tr>
+<tr>
+<td scope="row"><p class="text-center align-middle">Переменные и методы экземпляра класса</p></td>
+<td><p class="text-center align-middle">+</p></td>
+<td><p class="text-center align-middle">+</p></td>
+<td><p class="text-center align-middle">+</p></td>
+</tr>
+<tr>
+<td scope="row"><p class="text-center align-middle">Параметры методов и локальные переменные</p></td>
+<td><p class="text-center align-middle">-</p></td>
+<td><p class="text-center align-middle">-</p></td>
+<td><p class="text-center align-middle">-</p></td>
+</tr>
+</tbody>
+</table>
+
+<h5>!!!!!!!!!!!!!!!Изменить знаки + и - в таблице и в абзаце ниже</h5>
+
+<p>Если вы попробуете задать модификаторы тем элементам на пересечении с которыми стоит знак <s>
+- </s>вы получите ошибку компиляции.</p>
+<p>Данную схему рекомендуем очень хорошо запомнить,
+т.к. в вопросах по первой теме в экзамене часто попадаются вопросы,
+в которых либо нужно выбрать область видимости (то есть вопрос связан именно с темой модификаторов доступа),
+либо попадаются вопросы по другим темам, но из-за того,
+что в коде используется недопустимый тип модификатора или он используется не с тем элементом,
+правильным ответом там будет <s>«ошибка компиляции". Будьте внимательны!</s></p>

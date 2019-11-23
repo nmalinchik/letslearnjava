@@ -88,13 +88,22 @@ app.controller('MainController', ['$scope', function($scope){
   $scope.lessons = [
     'js/directives/html/intro.html',
     'js/directives/html/lesson1.html',
-    'js/directives/html/lesson1-1.html'
+    'js/directives/html/lesson1-1.html',
+    'js/directives/html/lesson1-2.html',
+    'js/directives/html/lesson1-3.html',
+    'js/directives/html/lesson1-4.html',
+    'js/directives/html/lesson1-5.html',
+    'js/directives/html/lesson1-8.html'
   ];
 
-  $scope.selectedLesson = $scope.lessons[2];
+  $scope.selectedLesson = $scope.lessons[0];
   $scope.selectLesson = function(number){
     $scope.selectedLesson = $scope.lessons[number];
   }
+
+  // angular.element(document).ready(function () {
+  //       document.getElementById('msg').innerHTML = 'Hello';
+  // });
 
 
 }])
